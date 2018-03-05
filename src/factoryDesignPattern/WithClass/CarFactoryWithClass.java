@@ -23,7 +23,7 @@ public class CarFactoryWithClass {
     public Car getCar()
     {
         if (BMW.equals(model)) {
-            return new BMW(model);
+            return new BMW(model, bhp, color);
         } else if (Audi.equals(model)) {
             return new Audi(model, bhp, color);
         } else {

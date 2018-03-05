@@ -1,6 +1,7 @@
 package main;
 
 import factoryDesignPattern.WithClass.Audi;
+import factoryDesignPattern.WithClass.BMW;
 import factoryDesignPattern.WithInterface.CarFactory;
 import factoryDesignPattern.WithClass.CarFactoryWithClass;
 
@@ -48,16 +49,17 @@ public class BuildCar {
 
     private static void withClass()
     {
+        int count = 1;
         for (CarFactoryWithClass car : listOfCarFactory())
         {
+            System.out.println("******** Car " + count + "********");
             printCarFacts(car);
             if (car.getCar() instanceof Audi)
             {
                 Audi audi = (Audi) car.getCar(); // Typecasting
                 System.out.println(audi.isSuperCar() ? "It is a super car" : "Its not a super car");
             }
-
-            System.out.println("#######");
+            count ++;
         }
     }
 
