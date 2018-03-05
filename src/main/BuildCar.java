@@ -4,6 +4,11 @@ import factoryDesignPattern.WithClass.Audi;
 import factoryDesignPattern.WithInterface.CarFactory;
 import factoryDesignPattern.WithClass.CarFactoryWithClass;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class BuildCar {
 
     public static void main(String args[])
@@ -43,15 +48,16 @@ public class BuildCar {
 
     private static void withClass()
     {
-        CarFactoryWithClass carFactory = new CarFactoryWithClass("BMW");
-        CarFactoryWithClass carFactory1 = new CarFactoryWithClass("Audi");
-        printCarFacts(carFactory);
-        printCarFacts(carFactory1);
-
-        if (carFactory1.getCar() instanceof Audi)
+        for (CarFactoryWithClass car : listOfCarFactory())
         {
-            Audi audi = (Audi) carFactory1.getCar(); // Typecasting
-            System.out.println(audi.isSuperCar() ? "It is a super car" : "Its not a super car");
+            printCarFacts(car);
+            if (car.getCar() instanceof Audi)
+            {
+                Audi audi = (Audi) car.getCar(); // Typecasting
+                System.out.println(audi.isSuperCar() ? "It is a super car" : "Its not a super car");
+            }
+
+            System.out.println("#######");
         }
     }
 
@@ -69,5 +75,25 @@ public class BuildCar {
         String color = factory.getCarColor();
         String bhp = factory.getBhp();
         System.out.println(String.format("Car bhp=%s, color=%s", bhp, color));
+    }
+
+    private static List<CarFactoryWithClass> listOfCarFactory()
+    {
+        CarFactoryWithClass carFactory = new CarFactoryWithClass("BMW");
+        CarFactoryWithClass carFactory1 = new CarFactoryWithClass("Audi");
+        CarFactoryWithClass carFactory2 = new CarFactoryWithClass("BMW","500", "RED");
+        CarFactoryWithClass carFactory3 = new CarFactoryWithClass("BMW","200", "BLUE");
+        CarFactoryWithClass carFactory4 = new CarFactoryWithClass("Audi","500", null);
+        CarFactoryWithClass carFactory5 = new CarFactoryWithClass(null ,"500", "YELLOW");
+
+        List<CarFactoryWithClass> list = new ArrayList<>();
+        list.add(carFactory);
+        list.add(carFactory1);
+        list.add(carFactory2);
+        list.add(carFactory3);
+        list.add(carFactory4);
+        list.add(carFactory5);
+
+        return list;
     }
 }
