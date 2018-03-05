@@ -81,20 +81,33 @@ public class BuildCar {
 
     private static List<CarFactoryWithClass> listOfCarFactory()
     {
-        CarFactoryWithClass carFactory = new CarFactoryWithClass("BMW");
-        CarFactoryWithClass carFactory1 = new CarFactoryWithClass("Audi");
-        CarFactoryWithClass carFactory2 = new CarFactoryWithClass("BMW","500", "RED");
-        CarFactoryWithClass carFactory3 = new CarFactoryWithClass("BMW","200", "BLUE");
-        CarFactoryWithClass carFactory4 = new CarFactoryWithClass("Audi","500", null);
-        CarFactoryWithClass carFactory5 = new CarFactoryWithClass(null ,"500", "YELLOW");
+        CarFactoryWithClass carFactory= new CarFactoryWithClass.FactoryBuilder().setModel("BMW").build();
+
+        CarFactoryWithClass carFactory1 = new CarFactoryWithClass.FactoryBuilder().setModel("Audi").build();
+        CarFactoryWithClass carFactory2 = new CarFactoryWithClass
+            .FactoryBuilder()
+            .setModel("BMW")
+            .setBhp("500")
+            .setColor("RED")
+            .build();
+
+        CarFactoryWithClass carFactory3 = new CarFactoryWithClass
+                .FactoryBuilder()
+                .setModel("BMW")
+                .setBhp("200")
+                .setColor("BLUE")
+                .build();
+
+       // CarFactoryWithClass carFactory4 = new CarFactoryWithClass("Audi","500", null);
+       // CarFactoryWithClass carFactory5 = new CarFactoryWithClass(null ,"500", "YELLOW");
 
         List<CarFactoryWithClass> list = new ArrayList<>();
         list.add(carFactory);
         list.add(carFactory1);
         list.add(carFactory2);
         list.add(carFactory3);
-        list.add(carFactory4);
-        list.add(carFactory5);
+        //list.add(carFactory4);
+        //list.add(carFactory5);
 
         return list;
     }
